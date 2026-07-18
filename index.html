@@ -204,82 +204,9 @@
         </div>
 
         <!-- КАРТИНКА -->
-        <div class="bento-item image-box" id="imageContainer">
-            <img id="projectImage" 
-                 src="about:blank" 
-                 alt="FoodMart Project"
-                 style="display:none;">
+        <div class="bento-item image-box">
+            <img src="https://i.ibb.co/tMQLKrdV/project.jpg" alt="FoodMart Project">
         </div>
-
-        <script>
-        (function() {
-            const img = document.getElementById('projectImage');
-            const container = document.getElementById('imageContainer');
-            
-            // ВСЕ возможные названия и расширения
-            const names = ['project', 'Project', 'PROJECT', 'foodmart', 'FoodMart'];
-            const extensions = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG', '.gif', '.GIF', '.webp', '.WEBP'];
-            const folders = ['', 'images/', 'img/', 'assets/', 'pics/', 'photos/'];
-            
-            // Собираем все комбинации
-            let sources = [];
-            
-            // Сначала проверяем raw.githubusercontent.com (это надёжнее для GitHub)
-            folders.forEach(folder => {
-                names.forEach(name => {
-                    extensions.forEach(ext => {
-                        sources.push('https://raw.githubusercontent.com/svetlanaurisman-stack/SA-Prjct-foodmart/main/' + folder + name + ext);
-                    });
-                });
-            });
-            
-            // Потом проверяем github.io
-            folders.forEach(folder => {
-                names.forEach(name => {
-                    extensions.forEach(ext => {
-                        sources.push('https://svetlanaurisman-stack.github.io/SA-Prjct-foodmart/' + folder + name + ext);
-                    });
-                });
-            });
-            
-            let currentIndex = 0;
-            
-            function showError() {
-                container.innerHTML = `
-                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;color:#9ca3af;font-size:16px;text-align:center;padding:20px;gap:12px;">
-                        <div style="font-size:40px;">🖼️</div>
-                        <div>Изображение не найдено</div>
-                        <div style="font-size:12px;color:#d1d5db;max-width:300px;">
-                            Проверьте:<br>
-                            • Файл загружен в репозиторий<br>
-                            • Название файла: project.jpg<br>
-                            • GitHub Pages активированы<br>
-                            • Прошло 2-3 минуты после загрузки
-                        </div>
-                    </div>`;
-            }
-            
-            function tryNextSource() {
-                if (currentIndex < sources.length) {
-                    img.src = sources[currentIndex];
-                    console.log('Пробую: ' + sources[currentIndex]);
-                    currentIndex++;
-                } else {
-                    console.log('Все варианты перебраны, изображение не найдено');
-                    showError();
-                }
-            }
-            
-            img.onerror = tryNextSource;
-            img.onload = function() {
-                console.log('✅ Изображение загружено: ' + img.src);
-                img.style.display = 'block';
-            };
-            
-            // Запускаем проверку
-            tryNextSource();
-        })();
-        </script>
 
         <!-- КАРТОЧКИ МОДУЛЕЙ -->
         <div class="bento-item mod-box">
